@@ -1,52 +1,24 @@
-import PropTypes from 'prop-types';
+import React from 'react';
+import './ProfileCard.css'; // CSS ফাইলটি এখানে ইনপোর্ট করুন
 
-import './ProfileCard.css';
-
-const ProfileCard = ({ profileData }) => {
-  const { name, jobTitle, email, description, socialLinks, image } = profileData;
-
+const ProfileCard = ({ name, profession, description, profileImage, social }) => {
   return (
     <div className="profile-card">
-      <div className="profile-header"></div>
-      <div className="profile-content">
-        <div className="profile-img">
-          <img src={image} alt={name} />
-        </div>
-        <h2 className='title'>{name}</h2>
-        <p className="job-title">{jobTitle}</p>
-        <p className="email">{email}</p>
+      <div className="profile-header">
+        <img src={profileImage} alt={name} className="profile-image" />
+      </div>
+      <div className="profile-body">
+        <h2 className="name">{name}</h2>
+        <h4 className="profession">{profession}</h4>
         <p className="description">{description}</p>
-        <div className="social-icons">
-          <a href={socialLinks.facebook} target="_blank" rel="noopener noreferrer">
-            <i className="fab fa-facebook"></i>
-          </a>
-          <a href={socialLinks.linkedin} target="_blank" rel="noopener noreferrer">
-            <i className="fab fa-linkedin"></i>
-          </a>
-          <a href={socialLinks.instagram} target="_blank" rel="noopener noreferrer">
-            <i className="fab fa-instagram"></i>
-          </a>
-        </div>
+      </div>
+      <div className="profile-footer">
+        <a href={social.facebook} className="social-icon"><i className="fab fa-facebook"></i></a>
+        <a href={social.twitter} className="social-icon"><i className="fab fa-twitter"></i></a>
+        <a href={social.instagram} className="social-icon"><i className="fab fa-instagram"></i></a>
       </div>
     </div>
-    
   );
-  
 };
-ProfileCard.propTypes = {
-  profileData: PropTypes.shape({
-    name: PropTypes.string.isRequired,       
-    jobTitle: PropTypes.string.isRequired,   
-    email: PropTypes.string.isRequired,     
-    description: PropTypes.string,          
-    socialLinks: PropTypes.shape({
-      facebook: PropTypes.string,            
-      linkedin: PropTypes.string,           
-      instagram: PropTypes.string,           
-    }),
-    image: PropTypes.string,            
-  }).isRequired, 
-};
-
 
 export default ProfileCard;
